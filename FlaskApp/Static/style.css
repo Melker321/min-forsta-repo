@@ -1,0 +1,55 @@
+h1 { color: rgb(0, 174, 255) ;
+    font-size: 60px;
+
+}
+
+button {
+    background-color: #f1f1f1;
+    color: black;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+button.active {
+    background-color: #4CAF50;  
+    color: white;  
+    border: 2px solid #3e8e41;  
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%;
+}
+
+
+
+.dropdown-options div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-options div:hover {
+    background-color: #f0f0f0;
+}
+
+.search-container:hover .dropdown-options {
+    display: block;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+}

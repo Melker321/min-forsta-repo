@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyheter</title>
+    <link rel="stylesheet" href="static/style.css"> <!--static för annars hittar den inte css-->
+    <style>
+
+ 
+    </style>
+</head>
+<body>
+    <h1>Nyheter</h1>
+    <form method="POST"> <!--post så man kan söka och "ändra" sidan "-->
+        <div class="search-container">
+            <label for="search">Sök efter nyheter:</label>
+            <input type="text" id="search" name="search" value="{{ query }}" placeholder="Skriv något..">
+            <div class="dropdown-options"><!--dropdown meny-->
+                <div onclick="setSearchValue('Sport')">Sport</div>
+                <div onclick="setSearchValue('Mat')">Mat</div>
+                <div onclick="setSearchValue('Teknik')">Teknik</div>
+                <div onclick="setSearchValue('Hälsa')">Hälsa</div>
+            </div>
+        </div>
+        <button type="submit">Sök</button><!--söknapp-->
+
+        <button type="submit" name="language" value="sv" {% if language == 'sv' %}class="active"{% endif %}>Svenska nyheter</button>
+        <!-- så att knappen ska fortsätta vara görn när den är markerad/tryckt-->
+
+        <button type="submit" name="language" value="en" {% if language == 'en' %}class="active"{% endif %}>Engelska nyheter</button>
+
+    </form>
+
+
+    {% if error_message %} <!--kollar om det har ett värde -->
+    <p style="color: red;">{{ error_message }}</p><!--om ja visas det eett felmedelande -->
+    {% endif %}<!--slutar if satsen -->
+
+
+
+
+    <ul>
+        {% if articles %} <!-- kollar inehållet i articels  -->
+            {% for article in articles %} <!-- loopar igenom articlarna -->
+                <li><!-- lista-->
+                    <strong>{{ article.title }}</strong><!-- visar articelns titel-->
+                    <br>
+                    {{ article.description }} <!-- visar articelns beskrivning-->
+                    <br>
+                    <a href="{{ article.url }}" target="_blank">Läs mer</a><!--länkar till articeln -->
+                </li>
+                <br>
+            {% endfor %}
+        {% else %} <!-- om nyheten inte hittas visas ett felmedelande-->
+            <p>Inga nyheter hittades för din sökning</p>
+        {% endif %}
+    </ul>
+
+    <script> 
+        function setSearchValue(value) {
+            document.getElementById('search').value = value;
+        }
+    </script>
+    <!--script visar att det är javascript, definerar funktionen setSearchValue, tar argumentet value
+    alltså det man vill söka. seach id blir till value-->
+</body>
+</html>
+ 
